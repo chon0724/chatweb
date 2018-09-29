@@ -5,6 +5,8 @@ var app = express();
 var http = require('http').Server(app); //1
 var io = require('socket.io')(http);    //1
 
+app.use(express.static(__dirname + '/client.css'));
+
 app.get('/',function(req, res){  //2
   res.sendFile(__dirname + '/client.html');
 });
@@ -29,3 +31,5 @@ io.on('connection', function(socket){ //3
 http.listen(3000, function(){ //4
   console.log('server on!');
 });
+
+app.use('/', express.static('public'));
